@@ -1,9 +1,11 @@
 # Contexto compartido — Pista
 
-Última actualización: 2026-09-29 (desde el chat de claude.ai)
+Última actualización: 2026-09-29 (Claude Code)
 
 ## Estado
-- v1 lista para publicar en GitHub Pages. Aún no está en GitHub.
+- v1 publicada y en GitHub (repo público SamuelHerrera3/pista, rama main).
+- App: https://samuelherrera3.github.io/pista/ (abrir en Safari del iPhone y agregar a pantalla de inicio).
+- URL raw de este archivo (para CONTEXTO_URL en el Apps Script): https://raw.githubusercontent.com/SamuelHerrera3/pista/main/CONTEXTO.md
 - Sheets: backend listo en `Code.gs`, sin conectar todavía.
 - Datos actuales de Samuel: en el tracker de Claude (artifact). Migrar con Exportar → Importar.
 
@@ -16,8 +18,8 @@
 
 ## Decisiones
 - 2026-09-29: PWA propia con localStorage + Google Sheets opcional. Paleta negros/grises/verdes.
+- 2026-09-29: Publicada en GitHub Pages (main / root). Al publicar se corrigieron nombres de archivo cruzados y se creó sw.js (VERSION pista-v1). Verificados en 200: index.html, manifest.webmanifest, sw.js e íconos.
 
 ## Pendientes
-- Publicar repo y activar Pages.
 - Conectar Sheets.
 - Confirmar fechas reales de los festivales.
