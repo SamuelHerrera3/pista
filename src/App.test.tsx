@@ -99,6 +99,23 @@ describe("App", () => {
     expect(stored().body).toHaveLength(2);
   });
 
+  it("tells the person when Sheets connects and when the key is wrong", async () => {
+    const url = "https://script.google.com/macros/s/ABC/exec";
+    const reply = (body: unknown) => vi.fn().mockResolvedValue({ json: async () => body });
+    vi.stubGlobal("fetch", reply({ ok: true, state: null }));
+    render(<App />);
+    await userEvent.click(screen.getByRole("tab", { name: "Plan" }));
+    await userEvent.type(screen.getByLabelText("URL del script"), url);
+    await userEvent.type(screen.getByLabelText("Clave (TOKEN)"), "abc");
+    await userEvent.click(screen.getByRole("button", { name: "Conectar" }));
+    await vi.waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("Conectado con Google Sheets"));
+
+    vi.stubGlobal("fetch", reply({ ok: false, error: "token" }));
+    await userEvent.click(screen.getByRole("button", { name: "Guardar y sincronizar" }));
+    await vi.waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("La clave no coincide"));
+    vi.unstubAllGlobals();
+  });
+
   it("rejects a Sheets URL that does not end in /exec", async () => {
     render(<App />);
     await userEvent.click(screen.getByRole("tab", { name: "Plan" }));

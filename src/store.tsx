@@ -75,9 +75,10 @@ export function PistaProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const pullRemote = useCallback(async () => {
+  /** Returns null on success or the error message, so callers can tell the person. */
+  const pullRemote = useCallback(async (): Promise<string | null> => {
     const c = cfgRef.current;
-    if (!c.url) return;
+    if (!c.url) return null;
     try {
       const j = await callSheets(c, { action: "load" });
       const remote = j.state ? normalize(j.state) : null;
@@ -92,8 +93,10 @@ export function PistaProvider({ children }: { children: ReactNode }) {
       } else {
         setSyncMsg("Sincronizado con Google Sheets · " + hora());
       }
+      return null;
     } catch (e) {
       setSyncMsg(navigator.onLine ? "Sheets: " + (e as Error).message : "Sin internet: usando lo guardado en el celular");
+      return navigator.onLine ? (e as Error).message : "sin internet";
     }
   }, [pushRemote]);
 
@@ -129,9 +132,10 @@ export function PistaProvider({ children }: { children: ReactNode }) {
       setCfg(next);
       saveCfg(next);
       setSyncMsg(CONNECTING_MSG);
-      void pullRemote();
+      toast("Conectando con Google Sheets…");
+      void pullRemote().then((err) => toast(err ? "Sheets: " + err : "Conectado con Google Sheets"));
     },
-    [pullRemote]
+    [pullRemote, toast]
   );
 
   const disconnect = useCallback(() => {
