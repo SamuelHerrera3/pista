@@ -5,11 +5,11 @@ Tracker de gimnasio, peso y pasos hacia los festivales. Es una PWA: se instala e
 ## 1. Publicarla (GitHub Pages)
 
 1. Crea un repo nuevo (puede ser privado solo con GitHub Pro; si no, público: el código no tiene datos tuyos).
-2. Sube todo el contenido de esta carpeta a la raíz del repo.
-3. Settings → Pages → Source: *Deploy from a branch* → `main` / `root`.
-4. En 1–2 minutos queda en `https://<tu-usuario>.github.io/<repo>/`.
+2. Sube el proyecto a la rama `main`.
+3. Settings → Pages → Source: **GitHub Actions**.
+4. Cada push a `main` corre las pruebas, compila y publica. En 1–2 minutos queda en `https://<tu-usuario>.github.io/pista/`.
 
-Vercel o Netlify también sirven: arrastra la carpeta y listo. Tiene que ser HTTPS para que funcione el modo sin internet.
+La ruta base `/pista/` está en `vite.config.ts`. Si le cambias el nombre al repo, cámbiala ahí también. Tiene que ser HTTPS para que funcione el modo sin internet.
 
 ## 2. Instalarla en el iPhone
 
@@ -49,11 +49,25 @@ Desde ahí, cada hora la pestaña `Contexto` de la hoja se actualiza con lo que 
 
 ## Actualizar la app
 
-Cuando cambies `index.html`, sube también `sw.js` con el valor de `VERSION` cambiado (por ejemplo `pista-v2`). Cierra y abre la app dos veces para que tome la versión nueva.
+Haz push a `main`. El service worker se regenera solo en cada build, así que no hay que subir ninguna versión a mano. La app instalada se actualiza la próxima vez que la abras.
+
+## Desarrollo
+
+Necesitas Node 22.
+
+```
+npm install
+npm run dev      # servidor local, también visible desde el celular en la misma red
+npm test         # pruebas de la lógica y de la app
+npm run build    # compila a dist/
+```
 
 ## Archivos
 
-- `index.html`: la app completa (HTML, CSS y JS en un solo archivo).
-- `sw.js`: service worker para uso sin internet.
-- `manifest.webmanifest` e `icons/`: nombre, colores e íconos de la app instalada.
-- `Code.gs`: backend en Google Apps Script.
+- `src/lib/`: lógica sin pantalla: fechas, plan de entrenamiento, forma del estado, respaldo y Google Sheets.
+- `src/screens/` y `src/components/`: pantallas Hoy, Peso y pasos, Historial y Plan, y sus piezas.
+- `src/store.tsx`: estado de la app, guardado en el celular y sincronización.
+- `src/styles.css`: estilos, pensados primero para el celular.
+- `public/icons/`: íconos de la app instalada.
+- `vite.config.ts`: build, ruta base y PWA (manifest y service worker se generan aquí).
+- `Code.gs`: backend en Google Apps Script. No se publica con la app.
