@@ -3,8 +3,7 @@
 Última actualización: 2026-09-29 (Claude Code)
 
 ## Estado
-- v1 (HTML único) publicada y en GitHub (repo público SamuelHerrera3/pista, rama main). Es lo que está en línea hoy.
-- v2 en React + TypeScript (Vite, mobile first) lista en la rama `react`, con pruebas. Aún no está en main ni en línea.
+- v2 en React + TypeScript (Vite, mobile first) publicada en línea desde main (repo público SamuelHerrera3/pista). Pages se despliega con GitHub Actions.
 - App: https://samuelherrera3.github.io/pista/ (abrir en Safari del iPhone y agregar a pantalla de inicio).
 - URL raw de este archivo (para CONTEXTO_URL en el Apps Script): https://raw.githubusercontent.com/SamuelHerrera3/pista/main/CONTEXTO.md
 - Sheets: backend listo en `Code.gs`, sin conectar todavía.
@@ -20,10 +19,10 @@
 ## Decisiones
 - 2026-09-29: PWA propia con localStorage + Google Sheets opcional. Paleta negros/grises/verdes.
 - 2026-09-29: Publicada en GitHub Pages (main / root). Al publicar se corrigieron nombres de archivo cruzados y se creó sw.js (VERSION pista-v1). Verificados en 200: index.html, manifest.webmanifest, sw.js e íconos.
-
-- 2026-09-29: Migración a React en la rama `react`. Misma UX, misma forma de estado y mismas claves de localStorage (`pista-tracker-v1`, `pista-sync-v1`), así que los datos existentes siguen. Layout rehecho para iPhone: áreas seguras, grillas sin desborde, barra inferior sin cortes. Pruebas: `planFor` igual a v1 en 113 días, forma del estado, respaldo y flujos principales.
+- 2026-09-29: Migración a React. Misma UX, misma forma de estado y mismas claves de localStorage (`pista-tracker-v1`, `pista-sync-v1`), así que los datos existentes siguen. Layout rehecho para iPhone: áreas seguras, grillas sin desborde, barra inferior sin cortes. Pruebas: `planFor` igual a v1 en 113 días, forma del estado, respaldo y flujos principales.
+- 2026-09-29: v2 fusionada en main (PR 1) y Pages cambiado a GitHub Actions. Sitio verificado en 200 (index, manifest, sw.js, íconos).
 
 ## Pendientes
-- Probar v2 en el iPhone. Para publicarla: en GitHub, Settings → Pages → Source: GitHub Actions, y fusionar la rama `react` en main.
+- Probar v2 en el iPhone: abrir el ícono dos veces para que tome la versión nueva y revisar que no haya elementos montados.
 - Conectar Sheets.
 - Confirmar fechas reales de los festivales.
