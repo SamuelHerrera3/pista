@@ -25,6 +25,8 @@
 - 2026-09-29: Apps Script desplegado con la cuenta personal y acceso "Cualquier persona" (con cuenta de trabajo pedía sesión). Sheets conectado desde la app. Se agregó un aviso al conectar.
 - 2026-10-08: Retoma tras 9 días sin entrenar (solo Push 29 sep y una caminata de 10 km el 30). Semana suave: jue 8 Pull (en vez de intervalos), vie 9 zona 2, sáb 10 caminata 60–90 min; lun 12 vuelve el plan normal con Legs. Implementado con `OVERRIDES` en `plan.ts`; la prueba de paridad con v1 salta esos días.
 
+- 2026-10-08: Pull cambiado: face pull → pec deck invertido (no le gusta el face pull) y se agrega curl martillo. Pull queda con 6 ejercicios.
+
 ## Pendientes
 - Probar v2 en el iPhone: abrir el ícono dos veces para que tome la versión nueva y revisar que no haya elementos montados.
 - Confirmar fechas reales de los festivales.
