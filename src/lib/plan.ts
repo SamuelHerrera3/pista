@@ -88,7 +88,21 @@ export interface DayPlan {
 const FIRST_WEEK: Record<number, string> = { 2: "push", 3: "z2", 4: "pull", 5: "legs", 6: "walk", 0: "rest", 1: "rest" };
 const BASE_WEEK: Record<number, string> = { 1: "legs", 2: "z2", 3: "push", 4: "intervals", 5: "pull", 6: "walk", 0: "rest" };
 
+/**
+ * Ajustes puntuales decididos en el chat. Ganan sobre la semana base.
+ * Retoma del 8 oct: tras 9 días sin entrenar, Pull en vez de intervalos y semana suave hasta el lunes.
+ */
+export const OVERRIDES: Record<string, DayPlan> = {
+  "2026-10-08": {
+    type: "pull",
+    note: "Retomas después de 9 días: Pull con 2–3 reps de sobra. Core antes del cardio y 20 min de caminadora."
+  },
+  "2026-10-09": { type: "z2", note: "Semana de retoma: 35–40 min a ritmo cómodo. Puede ser caminando afuera." },
+  "2026-10-10": { type: "walk", note: "Semana de retoma: 60–90 min bastan. El lunes vuelves al plan normal con Legs." }
+};
+
 export function planFor(s: string): DayPlan {
+  if (OVERRIDES[s]) return { ...OVERRIDES[s] };
   if (FESTS.includes(s)) return { type: "fest", note: "Hoy se baila." };
   const prev = lastFestBefore(s);
   if (prev) {

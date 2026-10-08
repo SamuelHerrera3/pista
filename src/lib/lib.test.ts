@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { LEGACY_STATE } from "../test/fixtures";
 import legacyPlan from "../test/legacy-plan.json";
 import { addDays } from "./dates";
-import { defaultSets, planFor } from "./plan";
+import { OVERRIDES, defaultSets, planFor } from "./plan";
 import { lastSessionWith, mergeBackup, newDraft, normalize, num, parseBackup } from "./state";
 
 describe("planFor", () => {
@@ -10,9 +10,17 @@ describe("planFor", () => {
     const days = Object.keys(legacyPlan);
     expect(days.length).toBeGreaterThan(100);
     for (const d of days) {
+      if (OVERRIDES[d]) continue;
       const expected = (legacyPlan as Record<string, { type: string; note: string; sets: number }>)[d];
       expect({ d, ...planFor(d), sets: defaultSets(d) }).toEqual({ d, ...expected });
     }
+  });
+
+  it("applies the chat overrides for the restart week", () => {
+    expect(planFor("2026-10-08").type).toBe("pull");
+    expect(planFor("2026-10-09").type).toBe("z2");
+    expect(planFor("2026-10-10").type).toBe("walk");
+    expect(planFor("2026-10-12").type).toBe("legs");
   });
 
   it("puts a festival on its own day and rest the day before", () => {
