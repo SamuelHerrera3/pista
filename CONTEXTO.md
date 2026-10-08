@@ -27,6 +27,8 @@
 
 - 2026-10-08: Pull cambiado: face pull → pec deck invertido (no le gusta el face pull) y se agrega curl martillo. Pull queda con 6 ejercicios.
 
+- 2026-10-08: Pull: remo sentado en polea → remo en T (landmine), lo prefiere. El jalón al pecho se mantiene como único jalón vertical.
+
 ## Pendientes
 - Probar v2 en el iPhone: abrir el ícono dos veces para que tome la versión nueva y revisar que no haya elementos montados.
 - Confirmar fechas reales de los festivales.

@@ -28,7 +28,7 @@ export const ROUTINES: Record<string, Routine> = {
   pull: {
     name: "Pull",
     kind: "fuerza",
-    ex: ["Jalón al pecho", "Remo sentado en polea", "Remo con mancuerna a una mano", "Pec deck invertido", "Curl de bíceps", "Curl martillo"],
+    ex: ["Jalón al pecho", "Remo en T", "Remo con mancuerna a una mano", "Pec deck invertido", "Curl de bíceps", "Curl martillo"],
     cardio: "15–20 min de caminadora inclinada al final"
   },
   legs: {
